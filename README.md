@@ -1,1 +1,1 @@
-# YouTube-Seo-Analyzer
+# YouTubeSEO Sniper v1.0
