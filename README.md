@@ -82,7 +82,7 @@ python seo_sniper.py sample_script.txt
 
 ---
 
-## ToonTalkStudios Integration
+## Integration
 
 Drop `seo_sniper.py`, `pipeline_hook.py`, and `config.json` into your pipeline folder,
 then call from your existing code:
@@ -217,7 +217,7 @@ Reddit, Google Trends, and DuckDuckGo News are all **completely free** — no ke
 youtube_seo_sniper/
 ├── seo_sniper.py        ← Main pipeline (run this)
 ├── batch_analyze.py     ← Process folder of scripts
-├── pipeline_hook.py     ← ToonTalkStudios integration module
+├── pipeline_hook.py     ← integration module
 ├── config.json          ← Model selection + subreddit maps
 ├── requirements.txt
 ├── .env.example
