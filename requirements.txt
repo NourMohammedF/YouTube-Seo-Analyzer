@@ -1,5 +1,28 @@
-# YouTubeSEO Sniper — requirements.txt
-requests>=2.31.0
-python-dotenv>=1.0.0
-pytrends>=4.9.2
-duckduckgo-search>=6.1.0
+# YouTubeSEO Sniper — Upload Pipeline  ·  requirements_upload.txt
+# ─────────────────────────────────────────────────────────────────────────────
+# Install everything (uploader + previous seo_sniper deps):
+#   pip install -r requirements.txt -r requirements_upload.txt
+#
+# Or install only the upload extras:
+#   pip install -r requirements_upload.txt
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Image processing (thumbnail generator) ────────────────────────────────────
+Pillow>=10.0.0
+
+# ── YouTube Data API v3 ───────────────────────────────────────────────────────
+google-api-python-client>=2.100.0
+google-auth-httplib2>=0.4.0
+google-auth-oauthlib>=1.0.0
+
+# ── Upload progress bar ───────────────────────────────────────────────────────
+tqdm>=4.66.0
+
+# ── Playwright browser fallback ───────────────────────────────────────────────
+# After install: also run  `playwright install chromium`  (downloads ~130MB Chromium)
+playwright>=1.40.0
+
+# ── NOTE: Pollinations.ai thumbnail generation ────────────────────────────────
+# Uses the standard `requests` library (already in requirements.txt).
+# No additional package needed. Endpoint: https://image.pollinations.ai/prompt/
+# Completely free, no API key required, uses FLUX model.

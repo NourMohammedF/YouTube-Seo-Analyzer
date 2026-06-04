@@ -1,36 +1,146 @@
 {
-  "_comment": "YouTubeSEO Sniper — config.json. Edit to tune models and behavior.",
-
-  "model_parse":  "meta/llama-3.3-70b-instruct",
-  "model_seo":    "mistralai/mistral-small-4-119b-2603",
-  "model_viral":  "mistralai/mistral-small-4-119b-2603",
-  "model_ideas":  "mistralai/mistral-small-4-119b-2603",
-
-  "_model_options": [
+  "_comment": "YouTubeSEO Sniper v1.1 \u2014 config.json",
+  "provider": "nim",
+  "fallback_providers": [
+    "groq",
+    "openrouter"
+  ],
+  "_fallback_comment": "Providers tried in order when primary times out. Each is skipped if its API key is not in .env. Free keys: Groq -> console.groq.com | OpenRouter -> openrouter.ai",
+  "providers": {
+    "nim": {
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "env_key": "NVIDIA_NIM_API_KEY",
+      "models": {
+        "parse": "meta/llama-3.3-70b-instruct",
+        "seo": "mistralai/mistral-small-4-119b-2603",
+        "viral": "mistralai/mistral-small-4-119b-2603",
+        "ideas": "mistralai/mistral-small-4-119b-2603"
+      }
+    },
+    "groq": {
+      "_comment": "Free tier \u2014 100k tokens/day. Best for speed.",
+      "base_url": "https://api.groq.com/openai/v1",
+      "env_key": "GROQ_API_KEY",
+      "models": {
+        "parse": "llama-3.3-70b-versatile",
+        "seo": "llama-3.3-70b-versatile",
+        "viral": "llama-3.3-70b-versatile",
+        "ideas": "llama-3.3-70b-versatile"
+      }
+    },
+    "openrouter": {
+      "_comment": "Free tier via :free models. Best for heavy tasks.",
+      "base_url": "https://openrouter.ai/api/v1",
+      "env_key": "OPENROUTER_API_KEY",
+      "models": {
+        "parse": "meta-llama/llama-3.3-70b-instruct",
+        "seo": "qwen/qwen3-235b-a22b:free",
+        "viral": "qwen/qwen3-235b-a22b:free",
+        "ideas": "qwen/qwen3-235b-a22b:free"
+      }
+    }
+  },
+  "_model_options_nim": [
     "meta/llama-3.3-70b-instruct",
     "mistralai/mistral-small-4-119b-2603",
     "mistralai/mistral-large-2-instruct",
     "nvidia/llama-3.1-nemotron-70b-instruct",
     "meta/llama-3.1-405b-instruct"
   ],
-
+  "cache_ttl_minutes": 60,
   "subreddit_map": {
-    "dark psychology":     ["psychology", "manipulation", "socialengineering", "coercivecontrol", "NarcissisticAbuse"],
-    "psychology":          ["psychology", "socialpsychology", "AskPsychology", "cognitivescience"],
-    "true crime":          ["TrueCrime", "unresolvedmysteries", "criminalminds", "serialkillers"],
-    "self improvement":    ["selfimprovement", "productivity", "getmotivated", "DecidingToBeBetter"],
-    "ai":                  ["artificial", "MachineLearning", "LocalLLaMA", "ChatGPT", "singularity"],
-    "technology":          ["technology", "Futurology", "gadgets", "hardware"],
-    "finance":             ["personalfinance", "investing", "wallstreetbets", "financialindependence"],
-    "health":              ["health", "fitness", "nutrition", "loseit"],
-    "gaming":              ["gaming", "pcgaming", "games", "IndieGaming"],
-    "animation":           ["animation", "AnimationCareer", "learnanimation", "blender"],
-    "history":             ["history", "AskHistorians", "HistoryMemes", "worldhistory"],
-    "conspiracy":          ["conspiracy", "conspiracy_commons", "highstrangeness"],
-    "spiritual":           ["spirituality", "Meditation", "awakened", "metaphysics"],
-    "default":             ["videos", "youtube", "OutOfTheLoop", "TIL"]
+    "dark psychology": [
+      "psychology",
+      "manipulation",
+      "socialengineering",
+      "coercivecontrol",
+      "NarcissisticAbuse"
+    ],
+    "psychology": [
+      "psychology",
+      "socialpsychology",
+      "AskPsychology",
+      "cognitivescience"
+    ],
+    "true crime": [
+      "TrueCrime",
+      "unresolvedmysteries",
+      "criminalminds",
+      "serialkillers"
+    ],
+    "self improvement": [
+      "selfimprovement",
+      "productivity",
+      "getmotivated",
+      "DecidingToBeBetter"
+    ],
+    "ai": [
+      "artificial",
+      "MachineLearning",
+      "LocalLLaMA",
+      "ChatGPT",
+      "singularity"
+    ],
+    "technology": [
+      "technology",
+      "Futurology",
+      "gadgets",
+      "hardware"
+    ],
+    "finance": [
+      "personalfinance",
+      "investing",
+      "wallstreetbets",
+      "financialindependence"
+    ],
+    "health": [
+      "health",
+      "fitness",
+      "nutrition",
+      "loseit"
+    ],
+    "gaming": [
+      "gaming",
+      "pcgaming",
+      "games",
+      "IndieGaming"
+    ],
+    "animation": [
+      "animation",
+      "AnimationCareer",
+      "learnanimation",
+      "blender"
+    ],
+    "history": [
+      "history",
+      "AskHistorians",
+      "HistoryMemes",
+      "worldhistory"
+    ],
+    "conspiracy": [
+      "conspiracy",
+      "conspiracy_commons",
+      "highstrangeness"
+    ],
+    "spiritual": [
+      "spirituality",
+      "Meditation",
+      "awakened",
+      "metaphysics"
+    ],
+    "relationships": [
+      "relationship_advice",
+      "NarcissisticAbuse",
+      "BPDlovedones",
+      "DeadBedrooms"
+    ],
+    "default": [
+      "videos",
+      "youtube",
+      "OutOfTheLoop",
+      "TIL"
+    ]
   },
-
   "reddit_scrape": {
     "posts_per_query": 8,
     "time_filter": "week",
@@ -38,21 +148,18 @@
     "delay_between_requests_s": 0.8,
     "max_total_posts": 18
   },
-
   "youtube_api": {
     "days_lookback": 30,
     "max_results_per_query": 8,
     "video_duration": "medium",
     "language": "en"
   },
-
   "google_trends": {
     "timeframe": "now 7-d",
     "gprop": "youtube",
     "geo": "",
     "max_keywords": 5
   },
-
   "seo_output": {
     "max_tags": 40,
     "max_description_words": 500,
@@ -60,9 +167,21 @@
     "include_timestamps": true,
     "include_hashtags": true
   },
-
   "viral_scoring": {
     "min_score_to_flag_high": 75,
     "min_score_to_flag_low": 40
+  },
+  "upload_playlist_map": {
+    "_comment": "Map niche keywords to YouTube playlist IDs. Get IDs from Studio > Playlists."
+  },
+  "upload_defaults": {
+    "privacy": "public",
+    "chunk_size_mb": 4,
+    "thumbnail_width": 1280,
+    "thumbnail_height": 720,
+    "thumbnail_quality": 96,
+    "auto_add_timestamps": true,
+    "max_hashtags_in_description": 10,
+    "fallback_category_id": "22"
   }
 }
